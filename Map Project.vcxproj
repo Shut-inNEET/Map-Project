@@ -128,6 +128,15 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Map Project.cpp" />
+    <ClCompile Include="schedule.cpp" />
+    <ClCompile Include="scheduleItem.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="schedule.h" />
+    <ClInclude Include="scheduleItem.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="STEM - Summer 2022 Schedule of Classes as of 05-02-22.csv" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

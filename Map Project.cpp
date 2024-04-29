@@ -1,20 +1,61 @@
-// Map Project.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
+#include "scheduleItem.h"
+#include "schedule.h"
 
-#include <iostream>
+int main() {
+    schedule scheduleData;
+    ifstream file("STEM - Summer 2022 Schedule of Classes as of 05-02-22.csv");
 
-int main()
-{
-    std::cout << "Hello World!\n";
+    if (file.is_open()) {
+        scheduleData.initSchedule(file);
+        file.close();
+
+        int choice;
+        string subject, catalog, lastName;
+
+        do {
+            cout << "Menu:\n";
+            cout << "1. Print schedule\n";
+            cout << "2. Find records by subject\n";
+            cout << "3. Find records by subject and catalog\n";
+            cout << "4. Find records by instructor's last name\n";
+            cout << "5. Exit\n";
+            cout << "Enter your choice: ";
+            cin >> choice;
+
+            switch (choice) {
+            case 1:
+                scheduleData.printHeader();
+                scheduleData.print();
+                break;
+            case 2:
+                cout << "Enter subject: ";
+                cin >> subject;
+                scheduleData.findBySubject(subject);
+                break;
+            case 3:
+                cout << "Enter subject: ";
+                cin >> subject;
+                cout << "Enter catalog: ";
+                cin >> catalog;
+                scheduleData.findBySubjectAndCatalog(subject, catalog);
+                break;
+            case 4:
+                cout << "Enter instructor's last name: ";
+                cin >> lastName;
+                scheduleData.findByInstructorLastName(lastName);
+                break;
+            case 5:
+                cout << "Exiting..." << endl;
+                break;
+            default:
+                cout << "Invalid choice. Please try again." << endl;
+            }
+            cout << endl;
+        } while (choice != 5);
+    }
+    else {
+        cout << "Unable to open the file." << endl;
+    }
+
+    return 0;
 }
-
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
-
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
